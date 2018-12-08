@@ -1,5 +1,11 @@
 @charset "utf-8";
 
+ @font-face{
+            font-family:bifur;
+            src:url('../fonts/bifur.ttf');
+ }
+
+
 /**
  * Site header
  */
@@ -7,20 +13,23 @@
   //Positioning context for the mobile navigation icon
   position: relative;
 }
+//border-bottom: 1px dotted;
 
 .site-title {
   font-size: 48px;
   line-height: 56px;
   letter-spacing: -1px;
   margin-bottom: 0;
+  font-family: bifur, serif;
   text-align:center;
+  color:#efdeb0;
+
   a{
     &,
     &:visited
     &:hover {
-      color: $brand-top-color; //$grey-color-dark
-      border-bottom: 1px dotted;
-      text-decoration: none;
+     color: #efdeb0; //$grey-color-dark $brand-top-color
+     text-decoration: none;
     }
   }
 }
@@ -35,7 +44,8 @@
 }
 
 .site-nav {
-  /*float: right;*/
+  //float: center;
+  text-align:center;
   line-height: 56px;
   border-top: 1px solid $grey-color-light;
   border-bottom: 1px solid $grey-color-light;
@@ -46,11 +56,9 @@
   .page-link {
     color: $grey-color;
     line-height: $base-line-height;
-
     // Gaps between nav items, but not on the first one
-
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
 
   }
 
@@ -60,7 +68,6 @@
     &:hover {
       color: $text-color;
       text-decoration: none;
-      //font-weight: bold;
     }
   }
 
@@ -121,6 +128,9 @@
   }
   li{
     list-style: none; 
+  }
+  b{
+    align :center;
   }
 
 }
@@ -212,6 +222,19 @@
   font-size:18px
 }
 
+
+
+
+//.slide-share{
+//   text-align:center;
+//  img{
+//    height: 32px;
+//    width: 32px;
+//    border-radius:50%;
+//    margin: 0 auto;
+//    display: block;
+//  }
+//}
 
 
 .post-content {
@@ -307,13 +330,27 @@ time{
     display: block;
   }
 }
-
 .img-about{
   height: 128px;
   width: 128px;
   border-radius:50%;
   margin: 0 auto;
   display: block;
+}
+.img-share{
+  img{
+    height: 22px;
+    width: 22px ;
+  }
+
+}
+
+.img-share:hover{
+  img{
+    height: 22px;
+    width: 22px ;
+  }
+
 }
 
 

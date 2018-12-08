@@ -70,6 +70,13 @@ ul, ol, dl, figure,
   min-height:1px;
   margin: 0px 15px;
 }
+.slider-module-user{
+ margin-top: 5px;
+ text-align:center;
+ font-weight:bold;
+}
+
+
 
 
 @media screen and (min-width : $on-palm) {
@@ -142,12 +149,12 @@ a {
   text-decoration: none;
 
   &:visited {
-    color: darken($brand-top-color, 25%);
+    color: darken($brand-top-color, 35%);
   }
 
   &:hover {
-    color: #669900; //$hover-color;
-    text-decoration: underline;
+    color: #bb363c; //$hover-color;#669900
+    //te;
   }
 }
 

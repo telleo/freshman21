@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jinji Blog</title>
+    <description>?.</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/zfeed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 08 Dec 2018 15:32:33 +0800</pubDate>
+    <lastBuildDate>Sat, 08 Dec 2018 15:32:33 +0800</lastBuildDate>
+    <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Centos7使用Jekly构建个人blog</title>
+        <description>&lt;p&gt;最近趁着&lt;code class=&quot;highlighter-rouge&quot;&gt;Black Friday&lt;/code&gt;,撸了个北美小鸡.在小鸡上建立了个人的博客.&lt;/p&gt;
+
+&lt;p&gt;本blog使用的是&lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll&lt;/code&gt; 和github上的blog是一样的.当然你也可以使用&lt;code class=&quot;highlighter-rouge&quot;&gt;hexo&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;域名购买的话,笔者是在&lt;code class=&quot;highlighter-rouge&quot;&gt;gandi&lt;/code&gt;上买的域名,但是大家更加推荐去&lt;code class=&quot;highlighter-rouge&quot;&gt;namesilo&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;使用&lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll&lt;/code&gt; ,推荐使用rvm(http://www.rvm.io) 去安装&lt;code class=&quot;highlighter-rouge&quot;&gt;ruby&lt;/code&gt;,再用&lt;code class=&quot;highlighter-rouge&quot;&gt;ruby&lt;/code&gt;安装&lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll&lt;/code&gt;&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;&lt;strong&gt;安装&lt;code class=&quot;highlighter-rouge&quot;&gt;rvm&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#配置key&lt;/span&gt;
+gpg &lt;span class=&quot;nt&quot;&gt;--keyserver&lt;/span&gt; hkp://keys.gnupg.net &lt;span class=&quot;nt&quot;&gt;--recv-keys&lt;/span&gt; 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+&lt;span class=&quot;c&quot;&gt;#安装&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\c&lt;/span&gt;url &lt;span class=&quot;nt&quot;&gt;-sSL&lt;/span&gt; https://get.rvm.io | bash &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; stable
+&lt;span class=&quot;c&quot;&gt;#重新加载一下rvm的运行环境,确保rvm可以运行&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; ~/.rvm/scripts/rvm
+&lt;span class=&quot;c&quot;&gt;#在命令行中输入,检测是否安装成功&lt;/span&gt;
+rvm &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;安装&lt;code class=&quot;highlighter-rouge&quot;&gt;ruby&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rvm &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;ruby
+rvm &lt;span class=&quot;nt&quot;&gt;--default&lt;/span&gt; use ruby
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;安装&lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#这里还需要另外一个bundler&lt;/span&gt;
+gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;jekyll bundler
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;理论上&lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll&lt;/code&gt;是安装完成了,如果你使用的是国内的云服务器,遇到网络错误,可以修改&lt;code class=&quot;highlighter-rouge&quot;&gt;gem&lt;/code&gt;的源&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#查看gem源&lt;/span&gt;
+gem sources &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; 
+&lt;span class=&quot;c&quot;&gt;#gem删除原来默认的源&lt;/span&gt;
+gem sources &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; https://rubygems.org
+&lt;span class=&quot;c&quot;&gt;#gem 添加 一个https源(注意 ,如果https还是不行,需要将s去掉)&lt;/span&gt;
+gem &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; https://gems.ruby-china.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;我们选择一个目录作为web的root目录&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#创建目录&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; /www
+&lt;span class=&quot;c&quot;&gt;#进入 jinji目录&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /www
+&lt;span class=&quot;c&quot;&gt;#创建jekyll&lt;/span&gt;
+jekyll new myblog
+&lt;span class=&quot;c&quot;&gt;#在后台启动&lt;/span&gt;
+bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve &lt;span class=&quot;nt&quot;&gt;--detach&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#退出&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;退回到root目录,wget 一下,主要是为了检查本地的&lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll&lt;/code&gt;是否已经启动成功了&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~
+wget http://127.0.0.1:4000
+&lt;span class=&quot;c&quot;&gt;#如果一切是行的通的话,这里是会显示jekyll默认的首页内容的&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#然后删掉&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-rf&lt;/span&gt; index.html
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;到了这里 jekyll已经结束了,为了让别人能够访问到你的网站 ,就需要去配置域名解析(DNS)&lt;/p&gt;
+
+&lt;p&gt;顺便配置下https.接下来就继续配置&lt;code class=&quot;highlighter-rouge&quot;&gt;Nginx&lt;/code&gt;,而在配置&lt;code class=&quot;highlighter-rouge&quot;&gt;nginx&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;配置DNS&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;配置dns非常简单.&lt;/p&gt;
+
+&lt;p&gt;在gandi的域解析记录添加以下内容&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jinji.io/images/cname_config.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;使用nginx包装&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#安装nginx &lt;/span&gt;
+yum update &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt;
+yum &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;nginx 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;在安装过程中 出现一个问题&lt;code class=&quot;highlighter-rouge&quot;&gt; No package nginx available&lt;/code&gt;,这个问题是因为&lt;code class=&quot;highlighter-rouge&quot;&gt;centos&lt;/code&gt;所提供的原始软件包安装器没有这个&lt;code class=&quot;highlighter-rouge&quot;&gt;nginx&lt;/code&gt;所导致的,安装一个&lt;code class=&quot;highlighter-rouge&quot;&gt;epel-release&lt;/code&gt;替换即可&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#重命名原来的,对其进行备份&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;mv&lt;/span&gt; /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+&lt;span class=&quot;c&quot;&gt;#使用aliyun的&lt;/span&gt;
+wget &lt;span class=&quot;nt&quot;&gt;-O&lt;/span&gt; /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+&lt;span class=&quot;c&quot;&gt;#清除缓存&lt;/span&gt;
+yum makecache
+&lt;span class=&quot;c&quot;&gt;#安装epel-release(提供软件包用的)&lt;/span&gt;
+yum &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;epel-release
+yum &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;nginx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;配置nginx服务器配置&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/nginx/nginx.conf &lt;/code&gt; 是&lt;code class=&quot;highlighter-rouge&quot;&gt;nginx &lt;/code&gt;默认的配置文件,当他被使用时会加载像conf.d中的service内容,每一个service相当于一个小的主机,也可以在里面直接配置https的信息(下面会写)&lt;/p&gt;
+
+&lt;p&gt;找到nginx中的server 80端口部分(38~57行)&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#以防万一 备份!&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; /etc/nginx/nginx.conf  /etc/nginx/nginx.conf.bak
+vim /etc/nginx/nginx.conf
+&lt;span class=&quot;c&quot;&gt;#显示下行号&lt;/span&gt;
+:set number 
+&lt;span class=&quot;c&quot;&gt;#请将myblog.com更换为你的域名&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#请注意 每行需要以分号结尾&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;--------------------------------------------&lt;/span&gt;
+server &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    listen 80&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    server_name myblog.com&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    location / &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+       &lt;span class=&quot;c&quot;&gt;#如果你的blog目前没有添加https,直接做跳转即可&lt;/span&gt;
+        proxy_pass http://localhost:4000&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;--------------------------------------------&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#保存&lt;/span&gt;
+:wq!
+&lt;span class=&quot;c&quot;&gt;#重启 nginx&lt;/span&gt;
+systemctl restart nginx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;重启的时候可能会提示错误&lt;/p&gt;
+
+&lt;p&gt;最常见的就是&lt;code class=&quot;highlighter-rouge&quot;&gt;nginx: bind() to 0.0.0.0:80 failed (98: Address already in use) &lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;使用这个命令结束掉80端口的问题,再次运行&lt;code class=&quot;highlighter-rouge&quot;&gt;systemctl restart nginx&lt;/code&gt; 即可&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fuser &lt;span class=&quot;nt&quot;&gt;-k&lt;/span&gt; 80/tcp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这个时候其实网站还是不能访问的,因为默认情况下服务器的防火墙会关闭80端口&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;firewall-cmd &lt;span class=&quot;nt&quot;&gt;--zone&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;public &lt;span class=&quot;nt&quot;&gt;--add-port&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;80/tcp &lt;span class=&quot;nt&quot;&gt;--permanent&lt;/span&gt; 
+&lt;span class=&quot;c&quot;&gt;#可能会提示FirewallD is not running&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#开启它!&lt;/span&gt;
+systemctl start firewalld
+&lt;span class=&quot;c&quot;&gt;#看到绿色文字 running&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#80端口开启&lt;/span&gt;
+firewall-cmd &lt;span class=&quot;nt&quot;&gt;--zone&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;public &lt;span class=&quot;nt&quot;&gt;--add-port&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;80/tcp &lt;span class=&quot;nt&quot;&gt;--permanent&lt;/span&gt; 
+&lt;span class=&quot;c&quot;&gt;#如果有https的话,你还需要开启443&lt;/span&gt;
+firewall-cmd &lt;span class=&quot;nt&quot;&gt;--zone&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;public &lt;span class=&quot;nt&quot;&gt;--add-port&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;443/tcp &lt;span class=&quot;nt&quot;&gt;--permanent&lt;/span&gt;
+firewall-cmd &lt;span class=&quot;nt&quot;&gt;--reload&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;到这里,你就可以通过域名访问到你的个人blog了.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;添加https&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;https://certbot.eff.org/lets-encrypt/centosrhel7-nginx&lt;/li&gt;
+  &lt;li&gt;去国内的云服务商那里申请免费的证书&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;注册免费的https有两种方法 ,很遗憾.使用自动签名的方式,在我这里并不起作用(原因始终无法找到)后来我使用了&lt;code class=&quot;highlighter-rouge&quot;&gt;aliyun&lt;/code&gt;的免费证书 .在aliyun 搜索&lt;code class=&quot;highlighter-rouge&quot;&gt;ssl证书&lt;/code&gt;  即可找到注册的页面,选择&lt;code class=&quot;highlighter-rouge&quot;&gt;免费版DV SSL&lt;/code&gt; 其要求你在dns解析的网站上添加一条域名解析内容,点击验证后,等待两个小时左右会有一条验证通过的短信,下载证书的&lt;code class=&quot;highlighter-rouge&quot;&gt;pem&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;key&lt;/code&gt; 上传到服务器的某个目录下笔者放在了 &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/nginx&lt;/code&gt; 下建立了一个&lt;code class=&quot;highlighter-rouge&quot;&gt;cert&lt;/code&gt;目录,并将这两个文件放入, 配置在&lt;code class=&quot;highlighter-rouge&quot;&gt;ssl_certificate&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;ssl_certificate_key&lt;/code&gt;下.下图是在gandi中配置验证的部分&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jinji.io/images/cname_https_auth.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;对nginx进行修改&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#443端口&lt;/span&gt;
+server &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    listen 443 ssl default_server &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    listen &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;::] ssl default_server&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#修改这里的myblog.com 为你的域名&lt;/span&gt;
+    server_name myblog.com&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#你的pem文件&lt;/span&gt;
+    ssl_certificate   your.pem&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#你的key文件&lt;/span&gt;
+    ssl_certificate_key  your.key&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    ssl_session_timeout 5m&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    ssl_prefer_server_ciphers on&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    location /&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;#你网站的路径, root是你本地网站的位置,请检查root目录下是否有对应的index.html,index.htm等文件&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;#否则会出现403(Forbidden)错误&lt;/span&gt;
+        root /www&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        index index.html&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#80端口&lt;/span&gt;
+server &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    listen 80&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    server_name myblog.com&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    location / &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	   &lt;span class=&quot;c&quot;&gt;#如果有https ,不要写上面这条, &lt;/span&gt;
+       &lt;span class=&quot;c&quot;&gt;#proxy_pass http://localhost:4000;&lt;/span&gt;
+	   &lt;span class=&quot;c&quot;&gt;#即只写这一条&lt;/span&gt;
+       &lt;span class=&quot;c&quot;&gt;#意思是如果有访问的话,就会作直接跳转&lt;/span&gt;
+       &lt;span class=&quot;c&quot;&gt;#由原来的http 直接跳转为https,这个需要&lt;/span&gt;
+       &lt;span class=&quot;c&quot;&gt;#配合443端口的内容&lt;/span&gt;
+        rewrite ^&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt; https://myblog.com&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#重启nginx&lt;/span&gt;
+systemctl restart nginx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;笔者曾经在这里遇到&lt;code class=&quot;highlighter-rouge&quot;&gt;403错误&lt;/code&gt; ,经过排查是443端口中,&lt;code class=&quot;highlighter-rouge&quot;&gt;root&lt;/code&gt; 目录和&lt;code class=&quot;highlighter-rouge&quot;&gt;index&lt;/code&gt;配置错误(路径错误) 导致的.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;配置git与hooks&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;git基础设置&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#安装git&lt;/span&gt;
+yum &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;git &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#验证 &lt;/span&gt;
+git &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#配置git&lt;/span&gt;
+git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; user.email &lt;span class=&quot;s2&quot;&gt;&quot;your_email@example.com&quot;&lt;/span&gt;
+git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; user.name &lt;span class=&quot;s2&quot;&gt;&quot;Your Name&quot;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#添加服务器的git账号 用于维护git &lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;adduser git
+&lt;span class=&quot;c&quot;&gt;#输入git密码&lt;/span&gt;
+passwd git 
+
+&lt;span class=&quot;c&quot;&gt;#切换到git账号&lt;/span&gt;
+su  git
+&lt;span class=&quot;c&quot;&gt;#添加git免输密码的ssh-key 验证&lt;/span&gt;
+ssh-keygen &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; rsa &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; 4096 &lt;span class=&quot;nt&quot;&gt;-C&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;your_email@example.com&quot;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#将客户端生成的~/.ssh/id_rsa.pub  添加到 git用户目录下 &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#1) .ssh目录的权限必须是700 &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#2) .ssh/authorized_keys文件权限必须是600&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;touch &lt;/span&gt;authorized_keys 
+&lt;span class=&quot;nb&quot;&gt;chmod &lt;/span&gt;600 authorized_keys
+&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;your.pub &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;  ~/.ssh/authorized_keys
+&lt;span class=&quot;c&quot;&gt;#在你的客户端上验证,123123123是你的服务器ip.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#会有一个让你输入yes的对话，在输入后&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#不需要输入密码，即说明这个免密码设置已经成功！！&lt;/span&gt;
+ssh &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; git@123.123.123
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git pull&lt;/code&gt; 和&lt;code class=&quot;highlighter-rouge&quot;&gt;git fetch&lt;/code&gt;区别在哪里？(为什么我要写这个？因为我因为一大堆git错误折腾了好久
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;commit-id&lt;/strong&gt;:在每次本地工作完成后，都会做一个&lt;code class=&quot;highlighter-rouge&quot;&gt;git commit &lt;/code&gt;操作来保存当前工作到本地的&lt;code class=&quot;highlighter-rouge&quot;&gt;repo&lt;/code&gt;， 此时会产生一个&lt;code class=&quot;highlighter-rouge&quot;&gt;commit-id&lt;/code&gt;，这是一个能唯一标识一个版本的序列号。 在使用&lt;code class=&quot;highlighter-rouge&quot;&gt;git push&lt;/code&gt;后，这个序列号还会同步到远程仓库。&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;FETCH_HEAD&lt;/strong&gt;: 版本链接，记录在本地的一个文件中，指向着目前已经从远程仓库取下来的分支的末端版本&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;git fetch&lt;/strong&gt;：这将更新git remote 中所有的远程仓库所包含分支的最新&lt;code class=&quot;highlighter-rouge&quot;&gt;commit-id&lt;/code&gt;, 将其记录到&lt;code class=&quot;highlighter-rouge&quot;&gt;.git/FETCH_HEAD&lt;/code&gt;文件中  .&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;git pull&lt;/strong&gt; : 基于本地&lt;code class=&quot;highlighter-rouge&quot;&gt;FETCH_HEAD&lt;/code&gt;记录，比对本地的&lt;code class=&quot;highlighter-rouge&quot;&gt;FETCH_HEAD&lt;/code&gt;记录与远程仓库的版本号，&lt;code class=&quot;highlighter-rouge&quot;&gt;git fetch&lt;/code&gt; 获得当前指向的远程分支的后续版本的数据，利用&lt;code class=&quot;highlighter-rouge&quot;&gt;git merge&lt;/code&gt;将其与本地的当前分支合并。所以可以认为&lt;code class=&quot;highlighter-rouge&quot;&gt;git pull&lt;/code&gt;是&lt;code class=&quot;highlighter-rouge&quot;&gt;git fetch&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;git merge&lt;/code&gt;两个步骤的结合。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;建立git服务器&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; /home/git/repo/www.git
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /home/git/repo/www.git
+&lt;span class=&quot;c&quot;&gt;#初始化&lt;/span&gt;
+git init &lt;span class=&quot;nt&quot;&gt;--bare&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /hooks
+vim post-receive
+&lt;span class=&quot;nt&quot;&gt;--------------------------&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#!/bin/sh&lt;/span&gt;
+git &lt;span class=&quot;nt&quot;&gt;--work-tree&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/www &lt;span class=&quot;nt&quot;&gt;--git-dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/git/repo.git checkout &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;--------------------------&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;chmod&lt;/span&gt; +x post-receive
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;设置完登录部分就可以对&lt;code class=&quot;highlighter-rouge&quot;&gt;/www&lt;/code&gt; 目录进行配置&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git init 
+&lt;span class=&quot;c&quot;&gt;#/repo 这里就是你的git路径&lt;/span&gt;
+git remote add orgin /home/git/repo/www.git
+git fetch
+&lt;span class=&quot;c&quot;&gt;#切换到主分支&lt;/span&gt;
+git checkout master
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;此时，你的git地址为&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git@123.123.123.123:/home/git/repo/www.git
+&lt;span class=&quot;c&quot;&gt;#在你的计算机上进行操作&lt;/span&gt;
+git clone git@123.123.123.123:/home/git/repo/www.git
+&lt;span class=&quot;nb&quot;&gt;touch &lt;/span&gt;README 
+git commit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;go!&quot;&lt;/span&gt;
+git push
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;出现了&lt;code class=&quot;highlighter-rouge&quot;&gt;error: unable to create file README (Permission denied)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;这个解决的话，我找了下 ，最后还是用最暴力的方式（总觉得这个方法不好，但是找不到其他方案）&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo chmod &lt;/span&gt;777 /wwww
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;至此，网站便可以顺利运行了。（我终于可以关掉一堆网页了！&lt;/p&gt;
+
+&lt;p&gt;参考资料:&lt;/p&gt;
+
+&lt;p&gt;vultr的centos 7创建jekyll教程&lt;/p&gt;
+
+&lt;p&gt;https://www.vultr.com/docs/creating-a-jekyll-blog-on-centos-7&lt;/p&gt;
+
+&lt;p&gt;生成https签名有两种方式&lt;/p&gt;
+
+&lt;p&gt;https://certbot.eff.org/lets-encrypt/centosrhel7-nginx&lt;/p&gt;
+
+&lt;p&gt;配置git-hook&lt;/p&gt;
+
+&lt;p&gt;https://ourai.ws/posts/deployment-with-git-hooks/&lt;/p&gt;
+
+&lt;p&gt;git pull 于fetch的区别&lt;/p&gt;
+
+&lt;p&gt;https://blog.csdn.net/riddle1981/article/details/74938111&lt;/p&gt;
+</description>
+        <pubDate>Thu, 06 Dec 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/web/2018/12/06/Centos7%E4%BD%BF%E7%94%A8Jekyll%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BAblog.html</link>
+        <guid isPermaLink="true">http://localhost:4000/web/2018/12/06/Centos7%E4%BD%BF%E7%94%A8Jekyll%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BAblog.html</guid>
+        
+        <category>CentOS</category>
+        
+        <category>建站</category>
+        
+        
+        <category>web</category>
+        
+      </item>
+    
+  </channel>
+</rss>

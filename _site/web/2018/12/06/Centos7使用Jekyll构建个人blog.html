@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Centos7使用Jekly构建个人blog">
+<title>Centos7使用Jekly构建个人blog</title>
+<meta property="og:description" content="最近趁着Black Friday,撸了个北美小鸡.在小鸡上建立了个人的博客.本blog使用的是jekyll 和github上的blog是一样的.当然你也可以使用hexo.域名购买的话,笔者是在gandi上买的域名,但是大家更加推荐去namesilo.使用jekyll ,推荐使用rvm(http://www.rvm...">
+<meta property="og:url" content="http://localhost:4000/web/2018/12/06/Centos7%E4%BD%BF%E7%94%A8Jekyll%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BAblog.html">
+<meta property="og:site_name" content="Jinji Blog">
+<meta property="og:locale" content="zh_cn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@Yyyye">
+<meta name="twitter:creator" content="@Yyyye">
+<meta name="twitter:title" content="Centos7使用Jekly构建个人blog">
+<meta name="twitter:description" content="最近趁着Black Friday,撸了个北美小鸡.在小鸡上建立了个人的博客.本blog使用的是jekyll 和github上的blog是一样的.当然你也可以使用hexo.域名购买的话,笔者是在gandi上买的域名,但是大家更加推荐去namesilo.使用jekyll ,推荐使用rvm(http://www.rvm...">
+<meta name="twitter:url" content="http://localhost:4000/web/2018/12/06/Centos7%E4%BD%BF%E7%94%A8Jekyll%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BAblog.html">
+
+<meta name="keywords" content="jinji,android,blog">
+
+<link rel="icon" href="/images/favicon.ico">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="canonical" href="http://localhost:4000/web/2018/12/06/Centos7%E4%BD%BF%E7%94%A8Jekyll%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BAblog.html">
+<link rel="alternate" type="application/atom+xml" title="Jinji Blog" href="http://localhost:4000/feed.xml" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+</head>
+
+
+
+
+<body background="/images/css/subtle_dots.png"  background-repeat="repeat-x","repeat-y";  >
+
+<div class="container">
+
+  <header class="site-header">
+
+  <div class="wrapper">
+
+    <h1 class="site-title"><a href="/">Jinji Blog</a></h1>
+    <h3 class="site-meta">生活是第三条大马哈鱼</h3>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+      <div class="trigger">
+        
+        
+        <a class="page-link" href="/">首页</a>
+        
+        
+        
+        <a class="page-link" href="/about/">关于</a>
+        
+        
+        
+        <a class="page-link" href="/archives/">存档</a>
+        
+        
+        
+        <a class="page-link" href="/categories/">分类目录</a>
+        
+        
+        
+        <a class="page-link" href="/tags/">标签</a>
+        
+        
+        
+        <a class="page-link" href="/guestbook/">留言</a>
+        
+        
+        
+        <a class="page-link" href="/feed.xml">订阅</a>
+        
+        
+        
+        
+        
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    
+
+  <div class="page-content col-sm-8">
+    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 itemprop="name" class="post-title">Centos7使用Jekly构建个人blog</h1>
+    <meta itemprop="keywords" content="CentOS,建站" />
+    <p class="post-meta">
+    目录:
+    
+    <a href="/categories/#web">web</a>
+    
+    
+    | 标签:
+    
+    <a href="/tags/#CentOS" title="CentOS">CentOS</a>, 
+    
+    <a href="/tags/#建站" title="建站">建站</a>
+    
+    
+    <time itemprop="datePublished" datetime="2018-12-06">
+    | 发表时间: Dec 6, 2018
+    </time>
+    </p>
+  </header>
+
+  <article class="post-content" itemprop="articleBody">
+    <p>最近趁着<code class="highlighter-rouge">Black Friday</code>,撸了个北美小鸡.在小鸡上建立了个人的博客.</p>
+
+<p>本blog使用的是<code class="highlighter-rouge">jekyll</code> 和github上的blog是一样的.当然你也可以使用<code class="highlighter-rouge">hexo</code>.</p>
+
+<p>域名购买的话,笔者是在<code class="highlighter-rouge">gandi</code>上买的域名,但是大家更加推荐去<code class="highlighter-rouge">namesilo</code>.</p>
+
+<p>使用<code class="highlighter-rouge">jekyll</code> ,推荐使用rvm(http://www.rvm.io) 去安装<code class="highlighter-rouge">ruby</code>,再用<code class="highlighter-rouge">ruby</code>安装<code class="highlighter-rouge">jekyll</code></p>
+
+<!-- more -->
+
+<p><strong>安装<code class="highlighter-rouge">rvm</code></strong></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#配置key</span>
+gpg <span class="nt">--keyserver</span> hkp://keys.gnupg.net <span class="nt">--recv-keys</span> 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+<span class="c">#安装</span>
+<span class="se">\c</span>url <span class="nt">-sSL</span> https://get.rvm.io | bash <span class="nt">-s</span> stable
+<span class="c">#重新加载一下rvm的运行环境,确保rvm可以运行</span>
+<span class="nb">source</span> ~/.rvm/scripts/rvm
+<span class="c">#在命令行中输入,检测是否安装成功</span>
+rvm <span class="nt">-v</span>
+</code></pre></div></div>
+
+<p><strong>安装<code class="highlighter-rouge">ruby</code></strong></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm <span class="nb">install </span>ruby
+rvm <span class="nt">--default</span> use ruby
+</code></pre></div></div>
+
+<p><strong>安装<code class="highlighter-rouge">jekyll</code></strong></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#这里还需要另外一个bundler</span>
+gem <span class="nb">install </span>jekyll bundler
+</code></pre></div></div>
+
+<p>理论上<code class="highlighter-rouge">jekyll</code>是安装完成了,如果你使用的是国内的云服务器,遇到网络错误,可以修改<code class="highlighter-rouge">gem</code>的源</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#查看gem源</span>
+gem sources <span class="nt">-l</span> 
+<span class="c">#gem删除原来默认的源</span>
+gem sources <span class="nt">-r</span> https://rubygems.org
+<span class="c">#gem 添加 一个https源(注意 ,如果https还是不行,需要将s去掉)</span>
+gem <span class="nb">source</span> <span class="nt">-a</span> https://gems.ruby-china.com
+</code></pre></div></div>
+
+<p>我们选择一个目录作为web的root目录</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#创建目录</span>
+<span class="nb">mkdir</span> <span class="nt">-p</span> /www
+<span class="c">#进入 jinji目录</span>
+<span class="nb">cd</span> /www
+<span class="c">#创建jekyll</span>
+jekyll new myblog
+<span class="c">#在后台启动</span>
+bundle <span class="nb">exec </span>jekyll serve <span class="nt">--detach</span>
+<span class="c">#退出</span>
+</code></pre></div></div>
+
+<p>退回到root目录,wget 一下,主要是为了检查本地的<code class="highlighter-rouge">jekyll</code>是否已经启动成功了</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~
+wget http://127.0.0.1:4000
+<span class="c">#如果一切是行的通的话,这里是会显示jekyll默认的首页内容的</span>
+<span class="c">#然后删掉</span>
+<span class="nb">rm</span> <span class="nt">-rf</span> index.html
+</code></pre></div></div>
+
+<p>到了这里 jekyll已经结束了,为了让别人能够访问到你的网站 ,就需要去配置域名解析(DNS)</p>
+
+<p>顺便配置下https.接下来就继续配置<code class="highlighter-rouge">Nginx</code>,而在配置<code class="highlighter-rouge">nginx</code></p>
+
+<p><strong>配置DNS</strong></p>
+
+<p>配置dns非常简单.</p>
+
+<p>在gandi的域解析记录添加以下内容</p>
+
+<p><img src="https://jinji.io/images/cname_config.png" alt="Alt text" /></p>
+
+<p>使用nginx包装</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#安装nginx </span>
+yum update <span class="nt">-y</span>
+yum <span class="nb">install </span>nginx 
+</code></pre></div></div>
+
+<p>在安装过程中 出现一个问题<code class="highlighter-rouge"> No package nginx available</code>,这个问题是因为<code class="highlighter-rouge">centos</code>所提供的原始软件包安装器没有这个<code class="highlighter-rouge">nginx</code>所导致的,安装一个<code class="highlighter-rouge">epel-release</code>替换即可</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#重命名原来的,对其进行备份</span>
+<span class="nb">mv</span> /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+<span class="c">#使用aliyun的</span>
+wget <span class="nt">-O</span> /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+<span class="c">#清除缓存</span>
+yum makecache
+<span class="c">#安装epel-release(提供软件包用的)</span>
+yum <span class="nb">install </span>epel-release
+yum <span class="nb">install </span>nginx
+</code></pre></div></div>
+
+<p><strong>配置nginx服务器配置</strong></p>
+
+<p><code class="highlighter-rouge">/etc/nginx/nginx.conf </code> 是<code class="highlighter-rouge">nginx </code>默认的配置文件,当他被使用时会加载像conf.d中的service内容,每一个service相当于一个小的主机,也可以在里面直接配置https的信息(下面会写)</p>
+
+<p>找到nginx中的server 80端口部分(38~57行)</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#以防万一 备份!</span>
+<span class="nb">cp</span> /etc/nginx/nginx.conf  /etc/nginx/nginx.conf.bak
+vim /etc/nginx/nginx.conf
+<span class="c">#显示下行号</span>
+:set number 
+<span class="c">#请将myblog.com更换为你的域名</span>
+<span class="c">#请注意 每行需要以分号结尾</span>
+<span class="nt">--------------------------------------------</span>
+server <span class="o">{</span>
+    listen 80<span class="p">;</span>
+    server_name myblog.com<span class="p">;</span>
+    location / <span class="o">{</span>
+       <span class="c">#如果你的blog目前没有添加https,直接做跳转即可</span>
+        proxy_pass http://localhost:4000<span class="p">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="nt">--------------------------------------------</span>
+<span class="c">#保存</span>
+:wq!
+<span class="c">#重启 nginx</span>
+systemctl restart nginx
+</code></pre></div></div>
+
+<p>重启的时候可能会提示错误</p>
+
+<p>最常见的就是<code class="highlighter-rouge">nginx: bind() to 0.0.0.0:80 failed (98: Address already in use) </code></p>
+
+<p>使用这个命令结束掉80端口的问题,再次运行<code class="highlighter-rouge">systemctl restart nginx</code> 即可</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fuser <span class="nt">-k</span> 80/tcp
+</code></pre></div></div>
+
+<p>这个时候其实网站还是不能访问的,因为默认情况下服务器的防火墙会关闭80端口</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>firewall-cmd <span class="nt">--zone</span><span class="o">=</span>public <span class="nt">--add-port</span><span class="o">=</span>80/tcp <span class="nt">--permanent</span> 
+<span class="c">#可能会提示FirewallD is not running</span>
+<span class="c">#开启它!</span>
+systemctl start firewalld
+<span class="c">#看到绿色文字 running</span>
+<span class="c">#80端口开启</span>
+firewall-cmd <span class="nt">--zone</span><span class="o">=</span>public <span class="nt">--add-port</span><span class="o">=</span>80/tcp <span class="nt">--permanent</span> 
+<span class="c">#如果有https的话,你还需要开启443</span>
+firewall-cmd <span class="nt">--zone</span><span class="o">=</span>public <span class="nt">--add-port</span><span class="o">=</span>443/tcp <span class="nt">--permanent</span>
+firewall-cmd <span class="nt">--reload</span> 
+</code></pre></div></div>
+
+<p>到这里,你就可以通过域名访问到你的个人blog了.</p>
+
+<p><strong>添加https</strong></p>
+
+<ul>
+  <li>https://certbot.eff.org/lets-encrypt/centosrhel7-nginx</li>
+  <li>去国内的云服务商那里申请免费的证书</li>
+</ul>
+
+<p>注册免费的https有两种方法 ,很遗憾.使用自动签名的方式,在我这里并不起作用(原因始终无法找到)后来我使用了<code class="highlighter-rouge">aliyun</code>的免费证书 .在aliyun 搜索<code class="highlighter-rouge">ssl证书</code>  即可找到注册的页面,选择<code class="highlighter-rouge">免费版DV SSL</code> 其要求你在dns解析的网站上添加一条域名解析内容,点击验证后,等待两个小时左右会有一条验证通过的短信,下载证书的<code class="highlighter-rouge">pem</code>和<code class="highlighter-rouge">key</code> 上传到服务器的某个目录下笔者放在了 <code class="highlighter-rouge">/etc/nginx</code> 下建立了一个<code class="highlighter-rouge">cert</code>目录,并将这两个文件放入, 配置在<code class="highlighter-rouge">ssl_certificate</code>和<code class="highlighter-rouge">ssl_certificate_key</code>下.下图是在gandi中配置验证的部分</p>
+
+<p><img src="https://jinji.io/images/cname_https_auth.png" alt="Alt text" /></p>
+
+<p>对nginx进行修改</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#443端口</span>
+server <span class="o">{</span>
+    listen 443 ssl default_server <span class="p">;</span>
+    listen <span class="o">[</span>::] ssl default_server<span class="p">;</span>
+    <span class="c">#修改这里的myblog.com 为你的域名</span>
+    server_name myblog.com<span class="p">;</span>
+    <span class="c">#你的pem文件</span>
+    ssl_certificate   your.pem<span class="p">;</span>
+    <span class="c">#你的key文件</span>
+    ssl_certificate_key  your.key<span class="p">;</span>
+    ssl_session_timeout 5m<span class="p">;</span>
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4<span class="p">;</span>
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2<span class="p">;</span>
+    ssl_prefer_server_ciphers on<span class="p">;</span>
+    location /<span class="o">{</span>
+        <span class="c">#你网站的路径, root是你本地网站的位置,请检查root目录下是否有对应的index.html,index.htm等文件</span>
+        <span class="c">#否则会出现403(Forbidden)错误</span>
+        root /www<span class="p">;</span>
+        index index.html<span class="p">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="c">#80端口</span>
+server <span class="o">{</span>
+    listen 80<span class="p">;</span>
+    server_name myblog.com<span class="p">;</span>
+    location / <span class="o">{</span>
+	   <span class="c">#如果有https ,不要写上面这条, </span>
+       <span class="c">#proxy_pass http://localhost:4000;</span>
+	   <span class="c">#即只写这一条</span>
+       <span class="c">#意思是如果有访问的话,就会作直接跳转</span>
+       <span class="c">#由原来的http 直接跳转为https,这个需要</span>
+       <span class="c">#配合443端口的内容</span>
+        rewrite ^<span class="o">(</span>.<span class="k">*</span><span class="o">)</span><span class="nv">$ </span> https://myblog.com<span class="p">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="c">#重启nginx</span>
+systemctl restart nginx
+</code></pre></div></div>
+
+<p>笔者曾经在这里遇到<code class="highlighter-rouge">403错误</code> ,经过排查是443端口中,<code class="highlighter-rouge">root</code> 目录和<code class="highlighter-rouge">index</code>配置错误(路径错误) 导致的.</p>
+
+<p><strong>配置git与hooks</strong></p>
+
+<ul>
+  <li>git基础设置</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#安装git</span>
+yum <span class="nb">install </span>git <span class="nt">-y</span>
+<span class="c">#验证 </span>
+git <span class="nt">-v</span>
+<span class="c">#配置git</span>
+git config <span class="nt">--global</span> user.email <span class="s2">"your_email@example.com"</span>
+git config <span class="nt">--global</span> user.name <span class="s2">"Your Name"</span>
+<span class="c">#添加服务器的git账号 用于维护git </span>
+<span class="nb">sudo </span>adduser git
+<span class="c">#输入git密码</span>
+passwd git 
+
+<span class="c">#切换到git账号</span>
+su  git
+<span class="c">#添加git免输密码的ssh-key 验证</span>
+ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-b</span> 4096 <span class="nt">-C</span> <span class="s2">"your_email@example.com"</span>
+<span class="c">#将客户端生成的~/.ssh/id_rsa.pub  添加到 git用户目录下 </span>
+<span class="c">#1) .ssh目录的权限必须是700 </span>
+<span class="c">#2) .ssh/authorized_keys文件权限必须是600</span>
+<span class="nb">touch </span>authorized_keys 
+<span class="nb">chmod </span>600 authorized_keys
+<span class="nb">cat </span>your.pub <span class="o">&gt;&gt;</span>  ~/.ssh/authorized_keys
+<span class="c">#在你的客户端上验证,123123123是你的服务器ip.</span>
+<span class="c">#会有一个让你输入yes的对话，在输入后</span>
+<span class="c">#不需要输入密码，即说明这个免密码设置已经成功！！</span>
+ssh <span class="nt">-t</span> git@123.123.123
+</code></pre></div></div>
+
+<ul>
+  <li><code class="highlighter-rouge">git pull</code> 和<code class="highlighter-rouge">git fetch</code>区别在哪里？(为什么我要写这个？因为我因为一大堆git错误折腾了好久
+    <ul>
+      <li><strong>commit-id</strong>:在每次本地工作完成后，都会做一个<code class="highlighter-rouge">git commit </code>操作来保存当前工作到本地的<code class="highlighter-rouge">repo</code>， 此时会产生一个<code class="highlighter-rouge">commit-id</code>，这是一个能唯一标识一个版本的序列号。 在使用<code class="highlighter-rouge">git push</code>后，这个序列号还会同步到远程仓库。</li>
+      <li><strong>FETCH_HEAD</strong>: 版本链接，记录在本地的一个文件中，指向着目前已经从远程仓库取下来的分支的末端版本</li>
+      <li><strong>git fetch</strong>：这将更新git remote 中所有的远程仓库所包含分支的最新<code class="highlighter-rouge">commit-id</code>, 将其记录到<code class="highlighter-rouge">.git/FETCH_HEAD</code>文件中  .</li>
+      <li><strong>git pull</strong> : 基于本地<code class="highlighter-rouge">FETCH_HEAD</code>记录，比对本地的<code class="highlighter-rouge">FETCH_HEAD</code>记录与远程仓库的版本号，<code class="highlighter-rouge">git fetch</code> 获得当前指向的远程分支的后续版本的数据，利用<code class="highlighter-rouge">git merge</code>将其与本地的当前分支合并。所以可以认为<code class="highlighter-rouge">git pull</code>是<code class="highlighter-rouge">git fetch</code>和<code class="highlighter-rouge">git merge</code>两个步骤的结合。</li>
+    </ul>
+  </li>
+  <li>建立git服务器</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span>  <span class="nt">-p</span> /home/git/repo/www.git
+<span class="nb">cd</span> /home/git/repo/www.git
+<span class="c">#初始化</span>
+git init <span class="nt">--bare</span>
+<span class="nb">cd</span> /hooks
+vim post-receive
+<span class="nt">--------------------------</span>
+<span class="c">#!/bin/sh</span>
+git <span class="nt">--work-tree</span><span class="o">=</span>/www <span class="nt">--git-dir</span><span class="o">=</span>/home/git/repo.git checkout <span class="nt">-f</span>
+<span class="nt">--------------------------</span>
+<span class="nb">chmod</span> +x post-receive
+
+</code></pre></div></div>
+
+<p>设置完登录部分就可以对<code class="highlighter-rouge">/www</code> 目录进行配置</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init 
+<span class="c">#/repo 这里就是你的git路径</span>
+git remote add orgin /home/git/repo/www.git
+git fetch
+<span class="c">#切换到主分支</span>
+git checkout master
+</code></pre></div></div>
+
+<p>此时，你的git地址为</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git@123.123.123.123:/home/git/repo/www.git
+<span class="c">#在你的计算机上进行操作</span>
+git clone git@123.123.123.123:/home/git/repo/www.git
+<span class="nb">touch </span>README 
+git commit <span class="nt">-m</span> <span class="s2">"go!"</span>
+git push
+</code></pre></div></div>
+
+<p>出现了<code class="highlighter-rouge">error: unable to create file README (Permission denied)</code></p>
+
+<p>这个解决的话，我找了下 ，最后还是用最暴力的方式（总觉得这个方法不好，但是找不到其他方案）</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo chmod </span>777 /wwww
+</code></pre></div></div>
+
+<p>至此，网站便可以顺利运行了。（我终于可以关掉一堆网页了！</p>
+
+<p>参考资料:</p>
+
+<p>vultr的centos 7创建jekyll教程</p>
+
+<p>https://www.vultr.com/docs/creating-a-jekyll-blog-on-centos-7</p>
+
+<p>生成https签名有两种方式</p>
+
+<p>https://certbot.eff.org/lets-encrypt/centosrhel7-nginx</p>
+
+<p>配置git-hook</p>
+
+<p>https://ourai.ws/posts/deployment-with-git-hooks/</p>
+
+<p>git pull 于fetch的区别</p>
+
+<p>https://blog.csdn.net/riddle1981/article/details/74938111</p>
+
+  </article>
+  <hr />
+</div>
+
+
+<section class="pager">
+  <ul>
+    
+    <li class="disabled"><a>&larr; 前一页</a></li>
+    
+    
+    <li class="disabled"><a>后一页 &rarr;</a></li>
+    
+  </ul>
+</section>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+
+  var disqus_developer = 1;
+
+var disqus_shortname ='jinji';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+    <section class="pager">
+  
+  
+</section>
+
+
+  </div>
+  <div class="col-sm-2">
+<div class="sidebar-module about">
+    <h4>关于我</h4>
+    <img title="Yyyye" src="/images/179175498.jpg" alt="Yyyye"/>
+    <div class="slider-module-user">Yyyye</div>
+    <span>大噶好~</span>
+</div>
+<div class="sidebar-module">
+    
+    <a class="img-share" href="mailto:Yyyye9333@gmail.com" title="mailto: Yyyye9333@gmail.com"><img
+            src="/images/css/email.png" alt="E-Mail"/></a>
+    
+    
+    <a class="img-share" href="https://github.com/telleo"><img src="/images/css/GitHub.png"
+                                                                                 alt="Github"/></a>
+    
+    <a class="img-share" href="https://book.douban.com/people/45408543/"><img src="/images/css/douban.png"
+                                                                              alt="豆瓣"/></a>
+    <a class="img-share" href="https://www.v2ex.com/member/Yyyye"><img src="/images/css/v2ex-square.png"
+                                                                       alt="v2ex"/></a>
+
+
+</div>
+<div class="sidebar-module">
+  <h4>近期文章</h4>
+  
+  <li>
+  <a href="/web/2018/12/06/Centos7%E4%BD%BF%E7%94%A8Jekyll%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BAblog.html" title="Centos7使用Jekly构建个人blog" rel="bookmark">Centos7使用Jekly构建个人blog</a>
+  </li>
+  
+</div>
+
+
+<div class="sidebar-module">
+  <h4>分类目录</h4>
+  
+  <li><a href="/categories/#web" title="web" rel="1">web (1)</a></li>
+  
+</div>
+
+
+<div class="sidebar-module">
+  <h4>标签</h4>
+  
+    <a href="/tags/#CentOS" title="CentOS" rel="1">CentOS</a> &nbsp;
+  
+    <a href="/tags/#建站" title="建站" rel="1">建站</a> &nbsp;
+  
+</div>
+
+
+<!--<div class="sidebar-module">
+  <h4>良师益友</h4>
+  
+  <li><a href="http://jinji.io" title="Another Jekyll blog theme">jinji</a></li>
+  
+  <li><a href="http://yulijia.net/" title="Lijia Yu's website">author's website</a></li>
+  
+</div>
+
+ -->
+<div class="sidebar-module">
+  <h4>存档</h4>
+
+  
+  
+  
+  
+  
+  <li id="2018" > <a href="/archives/#2018">2018</a></li>
+  
+  
+
+</div>
+
+
+<div class="sidebar-module"> <!-- sidebar-module-inset">-->
+  <h4>版权声明</h4>
+
+  
+
+  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.zh">
+    <img src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png">
+  </a>
+  <br />
+  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.zh">署名-非商业性使用-相同方式共享</a>
+
+  
+
+</div>
+
+
+</div>
+
+
+
+  
+
+  <footer class="site-footer">
+
+  <p>Copyright &copy; <a href="/">Jinji Blog</a></p>
+  <p>Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> 
+  on 
+  <a href="https://github.com/">Github</a>
+  | Theme <a href="https://github.com/yulijia/freshman21/">Freshman21</a> Design by <a href="https://yulijia.net">Lijia Yu</a>  
+
+</footer>
+
+
+</div>
+
+</body>
+
+</html>

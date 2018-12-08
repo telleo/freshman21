@@ -6,7 +6,7 @@ layout: default
   <div class="post" itemscope itemtype="http://schema.org/BlogPosting" >
     
     {% for post in paginator.posts %}
-  
+     
     <header class="post-header">
       <h1 itemprop="name" class="post-title">
         <a itemprop="url" class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
@@ -30,7 +30,7 @@ layout: default
     </header>
 
     <article class="post-content" itemprop="articleBody">
-      {{ post.content }}
+          {{ post.excerpt }}
     </article> <hr />
     
     {% endfor %}

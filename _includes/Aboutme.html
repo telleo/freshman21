@@ -1,23 +1,22 @@
 <div class="sidebar-module about">
-  <h4>{{ site.locales[site.default_locale].Aboutme }}</h4>
-  <img title="{{site.author}}" src="{{site.aboutme_photo}}" alt="{{site.author}}"/>
-  <span>{{site.aboutme}}</span>
-  <br />
+    <h4>{{ site.locales[site.default_locale].Aboutme }}</h4>
+    <img title="{{site.author}}" src="{{site.aboutme_photo}}" alt="{{site.author}}"/>
+    <div class="slider-module-user">{{site.author}}</div>
+    <span>{{site.aboutme}}</span>
+</div>
+<div class="sidebar-module">
+    {% if site.email != empty %}
+    <a class="img-share" href="mailto:{{site.email}}" title="mailto: {{site.email}}"><img
+            src="/images/css/email.png" alt="E-Mail"/></a>
+    {% endif %}
+    {% if site.github_username != empty %}
+    <a class="img-share" href="https://github.com/{{site.github_username}}"><img src="/images/css/GitHub.png"
+                                                                                 alt="Github"/></a>
+    {% endif %}
+    <a class="img-share" href="https://book.douban.com/people/45408543/"><img src="/images/css/douban.png"
+                                                                              alt="豆瓣"/></a>
+    <a class="img-share" href="https://www.v2ex.com/member/Yyyye"><img src="/images/css/v2ex-square.png"
+                                                                       alt="v2ex"/></a>
 
-  {% if site.ShowContactInfo == "True" %}
-
-  You can contact me via:
-
-  {% if site.email != empty %}
-  <a href="mailto:{{site.email}}" title="mailto: {{site.email}}">Email</a> /
-  {% endif %}
-  {% if site.github_username != empty %}
-  <a href="https://github.com/{{site.github_username}}" title="GithubID: {{site.github_username}}">Github</a> /
-  {% endif %}
-  {% if site.twitter_username != empty %}
-  <a href="https://twitter.com/{{site.twitter_username}}" title="TwitterID: {{site.twitter_username}}">Twitter</a>
-  {% endif %}
-
-  {% endif %}
 
 </div>

@@ -6,22 +6,11 @@ permalink: /about/
 ---
 
 
-### Freshman21 is a Jekyll theme.
 
-A tribute to Twenty Twelve and Twenty eleven.
+- jinji
 
-I like wordpress's theme Twenty Twelve and Twenty eleven very much. 
-So I called my Jekyll theme Freshman21 (Freshman <q>twenty-first</q> , it means twenty-first century, not twenty-one), this theme is based on my former theme [Freshman](https://github.com/yulijia/freshman/).
+​        `jinji`取自"`日落飞车` 的专辑`Jinji Kikko`",全名金桔希子,他是集结过去、现在与未来的可爱女性角色,爱与昙花一现的具体想像。 
 
-Freshman21 have two main page format, one is [single column](http://yulijia.net/en/  "see demo"), the other is two columns. For more details, please see the articles on the site.
+- 关于作者
 
-<cite>Proudly enjoy using Freshman21 theme.</cite> <code>;)</code>
-
-![麋鹿](https://i.imgur.com/Mdc4szJl.jpg){: .img-about}
-
-#### Hi, the picture you have seen in the sample-page is a Père David's deer photoed by my friend at Beijing Milu Park, China.
-
-Milu(麋鹿) is the chinese name of Père David's deer.
-
-
-
+​        抽烟喝酒不喜烫头,退堂鼓一级演奏家,曾热爱严肃文学.听歌曲风不定,喜欢吃各种没吃过的东西(即使不好吃,谢绝shit).喜欢抽烟的时候配合可乐. 生平最高职位是高中物理课代表,大学积极参与各种社团活动,毕业至今已有3年,从事Android开发工作. 希望有生之年可以完成一个属于自己的App.
